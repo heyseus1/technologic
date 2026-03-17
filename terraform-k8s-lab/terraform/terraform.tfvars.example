@@ -1,0 +1,5 @@
+kubeconfig_path = "~/.kube/config"
+kube_context    = "kind-terraform-lab"
+demo_namespace  = "demo"
+demo_app_name   = "demo-nginx"
+demo_replicas   = 2
