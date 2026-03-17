@@ -49,3 +49,6 @@ class HueClient:
         r = requests.put(self._url(path), headers=self._headers(json=True), json=body, verify=False, timeout=10)
         r.raise_for_status()
         return r.json() if r.content else {}
+    
+    def set_light(self, light_id: str, body: dict) -> None:
+        self.put(f"/clip/v2/resource/light/{light_id}", body)
