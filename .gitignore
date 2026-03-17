@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# venv
+.venv/
+
+# local env (never commit secrets)
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+
+
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+!.tfvars.example
+.terraform.lock.hcl
+
+# Optional: keep lock file if you want reproducible provider versions
+#! terraform/.terraform.lock.hcl
