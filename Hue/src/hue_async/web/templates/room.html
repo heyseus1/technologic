@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<a href="/">← Back to rooms</a>
+
+<div class="card">
+  <h1>{{ room.name }}</h1>
+  <p>
+    Current power:
+    {% if is_on %}
+      <span class="status-on">ON</span>
+    {% else %}
+      <span class="status-off">OFF</span>
+    {% endif %}
+  </p>
+  <p>Current brightness: {{ brightness if brightness is not none else "unknown" }}</p>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h2>Power</h2>
+    <form method="post" action="/rooms/{{ room.room_id }}/power">
+      <input type="hidden" name="power" value="on" />
+      <button class="button" type="submit">Turn On</button>
+    </form>
+    <br />
+    <form method="post" action="/rooms/{{ room.room_id }}/power">
+      <input type="hidden" name="power" value="off" />
+      <button class="button secondary" type="submit">Turn Off</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>Scene</h2>
+    <form method="post" action="/rooms/{{ room.room_id }}/scene">
+      <label>Select scene</label>
+      <select name="scene_id" required>
+        {% for scene in scenes %}
+          <option value="{{ scene.scene_id }}">{{ scene.name }}</option>
+        {% endfor %}
+      </select>
+      <button class="button" type="submit">Activate Scene</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>Brightness</h2>
+    <form method="post" action="/rooms/{{ room.room_id }}/brightness">
+      <label>Brightness (0-100)</label>
+      <input type="number" name="brightness" min="0" max="100" step="1" required />
+      <button class="button" type="submit">Set Brightness</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

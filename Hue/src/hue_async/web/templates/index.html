@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Rooms</h1>
+
+<div class="grid">
+  {% for item in room_states %}
+    <div class="card">
+      <h2>{{ item.room.name }}</h2>
+      <p>
+        Status:
+        {% if item.is_on %}
+          <span class="status-on">ON</span>
+        {% else %}
+          <span class="status-off">OFF</span>
+        {% endif %}
+      </p>
+      <p>Brightness: {{ item.brightness if item.brightness is not none else "unknown" }}</p>
+      <a href="/rooms/{{ item.room.room_id }}">Manage room</a>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
