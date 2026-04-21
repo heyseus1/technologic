@@ -1,0 +1,4 @@
+[
+  { "email": "mmorcaldi99@gmail.com", "role": "okta-super-admin" },
+  { "email": "bob@gmail.com", "role": "Read-only" }
+]

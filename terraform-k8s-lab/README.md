@@ -43,3 +43,38 @@ brew install kubernetes-cli
 brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
 brew install helm
+```
+
+## Validate
+
+```bash
+
+docker info
+kind --version
+kubectl version --client
+terraform version
+helm version
+
+```
+
+## initial repo setup
+
+``` bash
+
+mkdir terraform-k8s-lab
+cd terraform-k8s-lab
+git init
+
+mkdir -p kind terraform scripts
+touch README.md .gitignore Makefile
+touch kind/cluster.yaml
+touch scripts/create-cluster.sh scripts/destroy-cluster.sh
+touch terraform/versions.tf
+touch terraform/providers.tf
+touch terraform/variables.tf
+touch terraform/main.tf
+touch terraform/outputs.tf
+touch terraform/terraform.tfvars.example
+
+```
+

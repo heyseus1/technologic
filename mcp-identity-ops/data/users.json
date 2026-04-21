@@ -1,0 +1,14 @@
+[
+  {
+    "email": "mmorcaldi99@gmail.com",
+    "name": "Matthew Morcaldi",
+    "department": "super cool engineering",
+    "manager": "bob@gmail.com"
+  },
+  {
+    "email": "bob@gmail.com",
+    "name": "Bob Martinez",
+    "department": "super cool engineering",
+    "manager": "google@gmail.com"
+  }
+]
