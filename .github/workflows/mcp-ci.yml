@@ -1,0 +1,43 @@
+name: MCP CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'mcp-identity-ops/**'
+      - '.github/workflows/mcp-ci.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'mcp-identity-ops/**'
+      - '.github/workflows/mcp-ci.yml'
+  workflow_dispatch:
+
+jobs:
+  mcp-tests:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: mcp-identity-ops
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Sync dependencies
+        run: uv sync
+
+      - name: Smoke test CLI
+        run: uv run python client.py list_tools
+
+      - name: Smoke test user lookup
+        run: uv run python client.py lookup_user mmorcaldi99@gmail.com

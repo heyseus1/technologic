@@ -1,0 +1,40 @@
+name: Terraform Lab CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'terraform-k8s-lab/**'
+      - '.github/workflows/terraform-ci.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'terraform-k8s-lab/**'
+      - '.github/workflows/terraform-ci.yml'
+  workflow_dispatch:
+
+jobs:
+  terraform-validate:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: terraform-k8s-lab
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v6
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_version: "1.14.6"
+
+      - name: Terraform fmt check
+        run: terraform fmt -check -recursive
+
+      - name: Terraform init
+        run: terraform init -backend=false
+
+      - name: Terraform validate
+        run: terraform validate
